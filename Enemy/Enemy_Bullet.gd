@@ -11,7 +11,7 @@ func _ready():
 
 
 func _physics_process(_delta):
-	position += velocity
+	position = position + velocity
 
 
 func _on_body_entered(body):
