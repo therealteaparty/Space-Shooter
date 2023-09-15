@@ -1,19 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://cm7g0f6axvlj1"]
 
-[ext_resource type="Texture2D" uid="uid://b1408kqeyosv2" path="res://Assets/Untitled_Artwork.png" id="1_6ywe0"]
-[ext_resource type="Script" path="res://Player/Player/Player.gd" id="1_l1ptk"]
+[ext_resource type="PackedScene" uid="uid://dmjxbdm1gjqt" path="res://Player/player.tscn" id="1_memev"]
+[ext_resource type="PackedScene" uid="uid://ka8ljqftbhq8" path="res://Asteroid/asteroid.tscn" id="2_iifbc"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(570, 200)
-script = ExtResource("1_l1ptk")
-metadata/_edit_group_ = true
+[node name="Player" parent="." instance=ExtResource("1_memev")]
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.0797119, 0.0797119)
-texture = ExtResource("1_6ywe0")
+[node name="Aesteroid_Container" type="Node2D" parent="."]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Player"]
-scale = Vector2(0.0797119, 0.0797119)
-polygon = PackedVector2Array(552, -743.6, 552, -741.9, 564, -731.9, 564, -729.7, 577, -710.6, 577, -707.4, 584, -692.4, 584, -689.3, 605, -621.3, 605, -617, 619, -559.2, 619, -553, 635, -484.2, 635, -477, 645, -415.2, 645, -403, 653, -325.1, 653, -244, 655, -84, 655.8, -84, 661, -33.1, 661, 24, 664, 74.9, 664, 76.1, 657.9, 186, 656.8, 186, 654.8, 207, 653.5, 207, 648, 228, 648, 230, 650.3, 246, 648.3, 246, 619.3, 315, 618.2, 315, 603.2, 343, 602.1, 343, 573.1, 387, 572, 387, 540, 421.9, 540, 423.7, 522, 447, 520.8, 447, 483.8, 485, 481.7, 485, 446.7, 515, 444.7, 515, 341.6, 584, 339.5, 584, 237.5, 638, 233.1, 638, 109.3, 672, 104.3, 672, 4.19995, 688, -14, 688, -95, 685, -95, 683.8, -138, 679.8, -138, 678.7, -208, 667.7, -208, 666.5, -294, 639.5, -294, 638.4, -344, 618.4, -344, 617.3, -401, 590.3, -401, 589.1, -460, 556.2, -460, 555, -510, 516, -510, 514.8, -597, 425.8, -597, 423.7, -625, 392.8, -625, 390.5, -653, 350.6, -653, 348.5, -685, 282.5, -685, 279.3, -704, 215.3, -704, 209, -715, 141.2, -715, 126, -717, 28, -716, 28, -716, 2, -714.8, 2, -708, -61.2, -708, -315, -706.8, -315, -693.8, -451, -692.7, -451, -663.6, -596, -662.5, -596, -644.6, -666, -643.4, -666, -626.4, -712, -625.1, -712, -614.1, -729, -612.7, -729, -604.8, -736, -602.3, -736, -579, -739.3, -579, -737.5, -566, -733.5, -566, -732.1, -511, -700.2, -511, -699, -476.3, -673, -474.5, -673, -424, -643.1, -424, -642, -329, -574, -329, -572.9, -230, -491.9, -230, -490.9, -197.1, -460, -195.4, -460, -177.4, -447, -172.2, -447, -67.1, -459, 2, -459, 2, -457.9, 57, -453.9, 57, -452.7, 106.3, -445.3, 140, -466.1, 140, -466.9, 175.2, -500, 177.3, -500, 274.3, -582, 276.3, -582, 361.3, -645, 363.5, -645, 422, -681.1, 422, -682, 488.4, -728, 490.5, -728, 520.4, -746, 525.6, -746, 529, -746.7, 529, -748.5)
+[node name="Asteroid" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
+position = Vector2(100, 100)
+
+[node name="Asteroid2" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
+position = Vector2(900, 600)
+
+[node name="Effects" type="Node2D" parent="."]
