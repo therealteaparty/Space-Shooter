@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://8d5rdwq16ivf"]
+[gd_scene load_steps=4 format=3 uid="uid://8d5rdwq16ivf"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy_Bullet.gd" id="1_07law"]
 [ext_resource type="Texture2D" uid="uid://dctpyc2ja3tlc" path="res://Assets/IMG_1118.PNG" id="2_b53ed"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u66x7"]
+radius = 12.0
 
 [node name="Enemy_Bullet" type="Area2D"]
 script = ExtResource("1_07law")
@@ -10,10 +13,11 @@ script = ExtResource("1_07law")
 scale = Vector2(0.0158081, 0.0158081)
 texture = ExtResource("2_b53ed")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_u66x7")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 autostart = true
 

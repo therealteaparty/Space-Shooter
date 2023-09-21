@@ -1,7 +1,7 @@
 extends Area2D
 
 var speed = 10.0
-var damage = 1.0
+var damage = 1
 var velocity = Vector2.ZERO
 var Effects = null
 var Explosion = load("res://Effects/explosion.tscn")
@@ -13,7 +13,6 @@ func _ready():
 func _physics_process(_delta):
 	position = position + velocity
 
-
 func _on_body_entered(body):
 	if body.has_method("damage"):
 		body.damage(damage)
@@ -23,7 +22,6 @@ func _on_body_entered(body):
 		Effects.add_child(explosion)
 		explosion.global_position = global_position
 	queue_free()
-	
 
 func _on_timer_timeout():
 	queue_free()

@@ -1,13 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm7g0f6axvlj1"]
+[gd_scene load_steps=6 format=3 uid="uid://cm7g0f6axvlj1"]
 
-[ext_resource type="PackedScene" uid="uid://dmjxbdm1gjqt" path="res://Player/player.tscn" id="1_memev"]
+[ext_resource type="Texture2D" uid="uid://ck6tnlufg2k3i" path="res://Assets/IMG_1117.PNG" id="1_2bpro"]
+[ext_resource type="PackedScene" uid="uid://0djsns3d8msx" path="res://Player/player_container.tscn" id="2_eo5qp"]
 [ext_resource type="PackedScene" uid="uid://ka8ljqftbhq8" path="res://Asteroid/asteroid.tscn" id="2_iifbc"]
 [ext_resource type="PackedScene" uid="uid://c3llexyc7d5xd" path="res://Enemy/enemy.tscn" id="3_7up0i"]
-[ext_resource type="Script" path="res://Player/Player_Container.gd" id="3_ullnq"]
+
+[sub_resource type="GDScript" id="GDScript_xfo41"]
+script/source = "extends Node2D
+
+var Player = load(\"res://Player/player.tscn\")
+
+func _physics_process(_delta):
+	if get_child_count() == 0:
+		var player = Player.instantiate()
+		player.position = Vector2(576, 323)
+		add_child(player)
+"
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_memev")]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 325)
+scale = Vector2(1.03704, 1.03704)
+texture = ExtResource("1_2bpro")
+
+[node name="Player_Container" parent="." instance=ExtResource("2_eo5qp")]
 
 [node name="Aesteroid_Container" type="Node2D" parent="."]
 
@@ -17,10 +34,13 @@ position = Vector2(100, 100)
 [node name="Asteroid2" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
 position = Vector2(900, 600)
 
+[node name="Asteroid3" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
+position = Vector2(990, 120)
+
 [node name="Effects" type="Node2D" parent="."]
 
 [node name="Enemy_Container" type="Node2D" parent="."]
-script = ExtResource("3_ullnq")
+script = SubResource("GDScript_xfo41")
 
 [node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_7up0i")]
 position = Vector2(400, 200)
