@@ -9,7 +9,6 @@ var Effects = null
 var Explosion = load("res://Effects/explosion.tscn")
 var health = 10
 
-#FUNCTION FOR RECIEVING INPUT
 func get_input():
 	var to_return = Vector2.ZERO
 	$Exhaust.hide()
@@ -26,8 +25,8 @@ func _physics_process(_delta):
 	velocity += get_input()*speed
 	velocity = velocity.normalized() * clamp(velocity.length(), 0, max_speed)
 	move_and_slide()
-	position.x = wrapf(position.x, 0.0, 1152.0)
-	position.y = wrapf(position.y, 0.0, 648.0)
+	position.x = wrapf(position.x, 0.0, Global.VP.x)
+	position.y = wrapf(position.y, 0.0, Global.VP.y)
 	
 	if Input.is_action_just_pressed("Shoot"):
 		@warning_ignore("shadowed_variable")
@@ -48,9 +47,10 @@ func damage(d):
 			explosion.global_position = global_position
 			hide()
 			await explosion.animation_finished
+		Global.update_lives(-1)
 		queue_free()
 			
 
 func _on_area_2d_body_entered(body):
 	if body.name != "Player":
-		damage(10)
+		health -= 10

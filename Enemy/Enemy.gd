@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(_delta):
 	position += direction
 	position.y = initial_position.y + sin(position.x/20) * wobble
-	position.x = wrapf(position.x, 0.0, 1152.0)
+	position.x = wrapf(position.x, 0.0, Global.VP.x)
 
 func _on_timer_timeout():
 	var Player = get_node_or_null("/root/Game/Player_Container/Player")
@@ -31,6 +31,7 @@ func _on_timer_timeout():
 func damage(d):
 	health -= d
 	if health <= 0:
+		Global.update_score(500)
 		queue_free()
 
 func _on_area_2d_body_entered(body):

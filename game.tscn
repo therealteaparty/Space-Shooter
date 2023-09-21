@@ -1,46 +1,144 @@
-[gd_scene load_steps=6 format=3 uid="uid://cm7g0f6axvlj1"]
+[gd_scene load_steps=9 format=3 uid="uid://cm7g0f6axvlj1"]
 
-[ext_resource type="Texture2D" uid="uid://ck6tnlufg2k3i" path="res://Assets/IMG_1117.PNG" id="1_2bpro"]
-[ext_resource type="PackedScene" uid="uid://0djsns3d8msx" path="res://Player/player_container.tscn" id="2_eo5qp"]
-[ext_resource type="PackedScene" uid="uid://ka8ljqftbhq8" path="res://Asteroid/asteroid.tscn" id="2_iifbc"]
-[ext_resource type="PackedScene" uid="uid://c3llexyc7d5xd" path="res://Enemy/enemy.tscn" id="3_7up0i"]
-
-[sub_resource type="GDScript" id="GDScript_xfo41"]
-script/source = "extends Node2D
-
-var Player = load(\"res://Player/player.tscn\")
-
-func _physics_process(_delta):
-	if get_child_count() == 0:
-		var player = Player.instantiate()
-		player.position = Vector2(576, 323)
-		add_child(player)
-"
+[ext_resource type="PackedScene" uid="uid://dmjxbdm1gjqt" path="res://Player/player.tscn" id="1_fmwmx"]
+[ext_resource type="Texture2D" uid="uid://ck6tnlufg2k3i" path="res://Assets/IMG_1117.PNG" id="1_mnkhp"]
+[ext_resource type="Script" path="res://Player/Player_Container.gd" id="2_wot3x"]
+[ext_resource type="PackedScene" uid="uid://c3llexyc7d5xd" path="res://Enemy/enemy.tscn" id="3_jnbj4"]
+[ext_resource type="PackedScene" uid="uid://ka8ljqftbhq8" path="res://Asteroid/asteroid.tscn" id="4_yq365"]
+[ext_resource type="Script" path="res://UI/HUD.gd" id="6_g7e7m"]
+[ext_resource type="FontFile" uid="uid://bdwbyrhnnh63t" path="res://Assets/Hyperspace Bold.otf" id="7_id6oh"]
+[ext_resource type="Script" path="res://UI/Menu.gd" id="8_0c83x"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(582, 325)
-scale = Vector2(1.03704, 1.03704)
-texture = ExtResource("1_2bpro")
+position = Vector2(577, 326)
+scale = Vector2(1.01, 1.01)
+texture = ExtResource("1_mnkhp")
 
-[node name="Player_Container" parent="." instance=ExtResource("2_eo5qp")]
+[node name="Player_Container" type="Node2D" parent="."]
+position = Vector2(576, 323)
+script = ExtResource("2_wot3x")
 
-[node name="Aesteroid_Container" type="Node2D" parent="."]
-
-[node name="Asteroid" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
-position = Vector2(100, 100)
-
-[node name="Asteroid2" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
-position = Vector2(900, 600)
-
-[node name="Asteroid3" parent="Aesteroid_Container" instance=ExtResource("2_iifbc")]
-position = Vector2(990, 120)
-
-[node name="Effects" type="Node2D" parent="."]
+[node name="Player" parent="Player_Container" instance=ExtResource("1_fmwmx")]
+position = Vector2(-9, -3)
 
 [node name="Enemy_Container" type="Node2D" parent="."]
-script = SubResource("GDScript_xfo41")
 
-[node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_7up0i")]
-position = Vector2(400, 200)
+[node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_jnbj4")]
+
+[node name="Asteroid_Container" type="Node2D" parent="."]
+
+[node name="Asteroid" parent="Asteroid_Container" instance=ExtResource("4_yq365")]
+position = Vector2(129, 496)
+
+[node name="Asteroid2" parent="Asteroid_Container" instance=ExtResource("4_yq365")]
+position = Vector2(963, 119)
+
+[node name="Asteroid3" parent="Asteroid_Container" instance=ExtResource("4_yq365")]
+position = Vector2(977, 549)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_g7e7m")
+
+[node name="Score" type="Label" parent="UI/HUD"]
+layout_mode = 1
+offset_left = 21.0
+offset_right = 221.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 40
+text = "SCORE:"
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -194.0
+offset_top = 4.0
+offset_right = 6.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 40
+text = "TIME:"
+vertical_alignment = 1
+
+[node name="Indicator_Container" type="Control" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="UI/HUD"]
+autostart = true
+
+[node name="Menu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_0c83x")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.360784, 0.176471, 0.286275, 0.619608)
+
+[node name="Pause" type="Label" parent="UI/Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 60
+text = "Pause Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="UI/Menu"]
+layout_mode = 1
+offset_left = 468.0
+offset_top = 343.0
+offset_right = 668.0
+offset_bottom = 383.0
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 20
+text = "Restart Game"
+
+[node name="Quit" type="Button" parent="UI/Menu"]
+layout_mode = 1
+offset_left = 467.0
+offset_top = 266.0
+offset_right = 667.0
+offset_bottom = 306.0
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 20
+text = "Quit Game"
+
+[connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/Menu/Restart" to="UI/Menu" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/Menu/Quit" to="UI/Menu" method="_on_quit_pressed"]
