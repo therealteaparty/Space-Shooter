@@ -7,6 +7,7 @@ Project 2 for MSCH-C220
 ## What Makes this a Game?
 
 ## References
+Hyperspace Bold Typeface -- https://www.dafont.com/hyperspace.font
 
 ## Future Development
 
