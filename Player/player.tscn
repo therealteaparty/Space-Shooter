@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cnmp27m1vlx6v" path="res://Assets/IMG_1119.PNG" id="3_js8ex"]
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(-1, 0)
 script = ExtResource("1_yjtbg")
 metadata/_edit_group_ = true
 
