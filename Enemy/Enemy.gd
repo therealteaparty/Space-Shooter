@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var Bullet = load("res://Enemy/enemy_bullet.tscn")
-var health = 10
+var health = 20
 var y_positions = [100,150,200,500,550]
 var initial_position = Vector2.ZERO
 var direction = Vector2(1.5,0)
@@ -25,7 +25,7 @@ func _on_timer_timeout():
 		var bullet = Bullet.instantiate()
 		var d = global_position.angle_to_point(Player.global_position) + PI/2
 		bullet.rotation = d
-		bullet.global_position = global_position + Vector2(0,-70).rotated(d)
+		bullet.global_position = global_position + Vector2(0,-90).rotated(d)
 		Effects.add_child(bullet)
 
 func damage(d):

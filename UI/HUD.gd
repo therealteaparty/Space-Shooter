@@ -16,7 +16,7 @@ func update_time():
 	$Time.text = "Time: " + str(Global.time)
 
 func update_lives():
-	var lives_pos = Vector2(20, Global.VP.y -20)
+	var lives_pos = Vector2(20, Global.VP.y -30)
 	for child in $Indicator_Container.get_children():
 		child.queue_free()
 	for i in range(Global.lives):
