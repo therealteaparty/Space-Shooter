@@ -3,8 +3,8 @@ Project 2 for MSCH-C220
 A colorful space shooter in which the ships are cats.
 
 ## Implementation
-Original assets created using Procreate
-Original music created using Garage Band
+Original assets created using Procreate.
+Original music created using Garage Band.
 Game created in Godot v4
 
 ## What Makes this a Game?
