@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmjxbdm1gjqt"]
+[gd_scene load_steps=7 format=3 uid="uid://dmjxbdm1gjqt"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_yjtbg"]
 [ext_resource type="Texture2D" uid="uid://u7mak74e8aq1" path="res://Assets/IMG_1120.PNG" id="2_b43rn"]
 [ext_resource type="Texture2D" uid="uid://cnmp27m1vlx6v" path="res://Assets/IMG_1119.PNG" id="3_js8ex"]
+[ext_resource type="Texture2D" uid="uid://ysqqp01843oo" path="res://Assets/IMG_1121.PNG" id="4_nx0p6"]
+
+[sub_resource type="Curve" id="Curve_tlj4c"]
+_data = [Vector2(0.021978, 0.989474), 0.0, 0.0, 0, 0, Vector2(1, 0.505263), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_l748p"]
+min_value = -1.0
+_data = [Vector2(0, -0.936842), 0.0, 0.0, 0, 0, Vector2(0.5, -0.221053), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_yjtbg")
@@ -26,5 +36,29 @@ scale = Vector2(0.069, 0.069)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(-420.29, -420.29, -289.855, -1057.97, -188.406, -1086.96, -72.4639, -942.029, 28.9854, -956.522, 101.449, -1130.44, 202.898, -1043.48, 289.855, -753.623, 492.754, -681.16, 507.246, -550.725, 449.275, -405.797, 565.218, -28.9858, 623.188, 101.449, 550.725, 536.232, 478.261, 768.116, -449.275, 710.145, -623.188, 449.275, -594.203, 144.927, -681.159, -86.9565, -507.246, -101.449)
+
+[node name="Confetti" type="CPUParticles2D" parent="."]
+position = Vector2(0, -70)
+scale = Vector2(1e-05, 1e-05)
+emitting = false
+amount = 10
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+randomness = 1.0
+texture = ExtResource("4_nx0p6")
+emission_shape = 3
+emission_rect_extents = Vector2(50, 50)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, -980)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 0.0
+scale_amount_max = 0.02
+scale_amount_curve = SubResource("Curve_tlj4c")
+color = Color(1, 0.584314, 0.988235, 1)
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("Curve_l748p")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

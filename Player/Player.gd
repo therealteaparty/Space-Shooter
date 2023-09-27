@@ -30,6 +30,7 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("Shoot"):
 		if Global.ammo > 0:
+			$Confetti.emitting = true
 			var Effects = get_node_or_null("/root/Game/Effects")
 			if Effects != null:
 				Global.update_ammo(-1)
