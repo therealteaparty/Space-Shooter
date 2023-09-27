@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cm7g0f6axvlj1"]
+[gd_scene load_steps=9 format=3 uid="uid://cm7g0f6axvlj1"]
 
 [ext_resource type="Texture2D" uid="uid://ck6tnlufg2k3i" path="res://Assets/IMG_1117.PNG" id="1_mnkhp"]
 [ext_resource type="Script" path="res://Player/Player_Container.gd" id="2_wot3x"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://UI/HUD.gd" id="6_g7e7m"]
 [ext_resource type="FontFile" uid="uid://bdwbyrhnnh63t" path="res://Assets/Hyperspace Bold.otf" id="7_id6oh"]
 [ext_resource type="Script" path="res://UI/Menu.gd" id="8_0c83x"]
+[ext_resource type="AudioStream" uid="uid://beqpkiglq0j5p" path="res://Assets/My Song 5.wav" id="8_e7csa"]
 
 [node name="Game" type="Node2D"]
 
@@ -82,6 +83,23 @@ grow_vertical = 2
 [node name="Timer" type="Timer" parent="UI/HUD"]
 autostart = true
 
+[node name="Ammo" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -166.0
+offset_top = -47.0
+offset_right = 34.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_id6oh")
+theme_override_font_sizes/font_size = 35
+text = "Ammo: "
+vertical_alignment = 1
+
 [node name="Menu" type="Control" parent="UI"]
 process_mode = 3
 visible = false
@@ -135,6 +153,10 @@ offset_bottom = 306.0
 theme_override_fonts/font = ExtResource("7_id6oh")
 theme_override_font_sizes/font_size = 20
 text = "Quit Game"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_e7csa")
+autoplay = true
 
 [connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/Menu/Restart" to="UI/Menu" method="_on_restart_pressed"]

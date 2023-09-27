@@ -3,10 +3,12 @@ extends Node
 var score = 0
 var lives = 0
 var time = 0
+var ammo = 0
 var VP = Vector2.ZERO
 
 
 func _ready():
+	reset()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	randomize()
 	VP = get_viewport().size
@@ -50,6 +52,12 @@ func update_score(s):
 func update_time(t):
 	time += t
 
+func update_ammo(a):
+	ammo += a
+	var hud = get_node_or_null("/root/Game/UI/HUD")
+	if hud != null:
+		hud.update_ammo()	
+
 func _resize():
 	VP = get_viewport().size
 	var hud = get_node_or_null("/root/Game/UI/HUD")
@@ -60,6 +68,7 @@ func _resize():
 
 func reset():
 	get_tree().paused = false
+	ammo = 40
 	score = 0
 	time = 30
 	lives = 9

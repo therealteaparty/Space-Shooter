@@ -8,12 +8,16 @@ func _ready():
 	update_score()
 	update_lives()
 	update_time()
+	update_ammo()
 
 func update_score():
 	$Score.text = "Score: " + str(Global.score)
 	
 func update_time():
 	$Time.text = "Time: " + str(Global.time)
+	
+func update_ammo():
+	$Ammo.text = "Ammo: " + str(Global.ammo)
 
 func update_lives():
 	var lives_pos = Vector2(20, Global.VP.y -30)
